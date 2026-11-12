@@ -1,0 +1,499 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Fieldwise - Smart Farming Analytics for Telangana agriculture.">
+
+    <title>Fieldwise | Smart Farming Analytics</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="site-header">
+
+        <div class="brand">
+            <div class="brand-icon">🌱</div>
+
+            <div>
+                <h2>Fieldwise</h2>
+                <p>SMART FARMING ANALYTICS</p>
+            </div>
+        </div>
+
+        <nav class="navigation">
+            <a href="#dashboard">Dashboard</a>
+            <a href="#historical">Analytics</a>
+            <a href="#predictions">Predictions</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <div class="header-location">
+            <span>📍</span>
+            <span>Telangana, India</span>
+        </div>
+
+    </header>
+
+
+    <main class="dashboard">
+
+        <!-- HERO SECTION -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="eyebrow">
+                    AGRICULTURE INTELLIGENCE PLATFORM
+                </span>
+
+                <h1>
+                    Smarter Farming.<br>
+                    <span>Better Harvests.</span>
+                </h1>
+
+                <p>
+                    Explore agricultural production, rainfall trends,
+                    crop performance and future production estimates
+                    across Telangana.
+                </p>
+
+                <a href="#dashboard" class="hero-button">
+                    Explore Dashboard →
+                </a>
+
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-circle">🌾</div>
+                <span class="floating-label">AI Agriculture Insights</span>
+            </div>
+
+        </section>
+
+
+        <!-- DASHBOARD -->
+
+        <section id="dashboard">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">OVERVIEW</span>
+                    <h2>Agriculture Dashboard</h2>
+
+                    <p>
+                        Analyze agricultural data using district
+                        and crop filters.
+                    </p>
+                </div>
+
+                <span class="live-indicator">
+                    ● Dashboard
+                </span>
+
+            </div>
+
+
+            <!-- FILTERS -->
+
+            <section class="filters">
+
+                <div class="filter-heading">
+                    <div>
+                        <h3>Filter Agricultural Data</h3>
+                        <p>Select a district and crop to explore the data.</p>
+                    </div>
+
+                    <button id="resetFilters" type="button">
+                        Reset Filters
+                    </button>
+                </div>
+
+                <div class="filter-grid">
+
+                    <div class="filter-group">
+                        <label for="stateFilter">State</label>
+
+                        <select id="stateFilter">
+                            <option value="Telangana">Telangana</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="districtFilter">District</label>
+
+                        <select id="districtFilter">
+                            <option value="">All Districts</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="cropFilter">Crop</label>
+
+                        <select id="cropFilter">
+                            <option value="">All Crops</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- STATUS -->
+
+            <div id="status" role="status" aria-live="polite">
+                Loading agricultural data...
+            </div>
+
+
+            <!-- KPI CARDS -->
+
+            <section class="stats-grid">
+
+                <article class="stat-card">
+                    <div class="stat-icon">📊</div>
+
+                    <h3>Total Observations</h3>
+
+                    <h2 id="totalObservations">--</h2>
+
+                    <p>Filtered records</p>
+                </article>
+
+
+                <article class="stat-card">
+                    <div class="stat-icon">🌾</div>
+
+                    <h3>Average Production</h3>
+
+                    <h2 id="averageProduction">--</h2>
+
+                    <p>Tonnes per hectare</p>
+                </article>
+
+
+                <article class="stat-card">
+                    <div class="stat-icon">🌧️</div>
+
+                    <h3>Average Rainfall</h3>
+
+                    <h2 id="averageRainfall">--</h2>
+
+                    <p>Millimetres</p>
+                </article>
+
+
+                <article class="stat-card">
+                    <div class="stat-icon">🌱</div>
+
+                    <h3>Crop Varieties</h3>
+
+                    <h2 id="cropCount">--</h2>
+
+                    <p>Available crops</p>
+                </article>
+
+            </section>
+
+        </section>
+
+
+        <!-- HISTORICAL ANALYTICS -->
+
+        <section id="historical" class="analytics-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">HISTORICAL ANALYSIS</span>
+
+                    <h2>Production & Rainfall Trends</h2>
+
+                    <p>
+                        Historical agricultural performance from
+                        2024 to 2026, where data is available.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="charts-grid">
+
+                <article class="chart-card">
+
+                    <div class="chart-heading">
+                        <div>
+                            <h3>Production Trend</h3>
+                            <p>AI-based production estimates</p>
+                        </div>
+
+                        <span class="chart-icon">📈</span>
+                    </div>
+
+                    <div class="chart-wrapper">
+                        <canvas id="productionChart"></canvas>
+                    </div>
+
+                </article>
+
+
+                <article class="chart-card">
+
+                    <div class="chart-heading">
+                        <div>
+                            <h3>Rainfall Analysis</h3>
+                            <p>Annual rainfall patterns</p>
+                        </div>
+
+                        <span class="chart-icon">🌧️</span>
+                    </div>
+
+                    <div class="chart-wrapper">
+                        <canvas id="rainfallChart"></canvas>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- PREDICTIONS -->
+
+        <section id="predictions" class="analytics-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">FUTURE AGRICULTURE</span>
+
+                    <h2>AI vs Traditional Predictions</h2>
+
+                    <p>
+                        Compare projected agricultural production
+                        for the next three years.
+                    </p>
+                </div>
+
+                <span class="forecast-badge">
+                    2027 – 2029
+                </span>
+
+            </div>
+
+
+            <article class="chart-card prediction-card">
+
+                <div class="chart-heading">
+
+                    <div>
+                        <h3>Production Forecast Comparison</h3>
+
+                        <p>
+                            AI and Traditional production
+                            projections in tonnes per hectare.
+                        </p>
+                    </div>
+
+                    <span class="chart-icon">🔮</span>
+
+                </div>
+
+                <div class="legend-info">
+
+                    <span>
+                        <i class="legend-dot ai-dot"></i>
+                        AI Prediction
+                    </span>
+
+                    <span>
+                        <i class="legend-dot traditional-dot"></i>
+                        Traditional Prediction
+                    </span>
+
+                </div>
+
+                <div class="chart-wrapper prediction-chart">
+                    <canvas id="predictionChart"></canvas>
+                </div>
+
+            </article>
+
+
+            <div class="note">
+                <strong>Forecast methodology:</strong>
+                Predictions are calculated using separate linear
+                trend estimates for AI and Traditional production
+                based on the available historical data. They are
+                estimates, not guaranteed future harvest results.
+            </div>
+
+        </section>
+
+
+        <!-- CROP ANALYSIS -->
+
+        <section class="analytics-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">CROP PERFORMANCE</span>
+
+                    <h2>Crop Distribution</h2>
+
+                    <p>
+                        Explore the distribution of available
+                        agricultural crop records.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <article class="chart-card full-width">
+
+                <div class="chart-heading">
+                    <div>
+                        <h3>Crop-wise Records</h3>
+                        <p>Distribution of filtered crop observations</p>
+                    </div>
+
+                    <span class="chart-icon">🌿</span>
+                </div>
+
+                <div class="chart-wrapper">
+                    <canvas id="cropChart"></canvas>
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- DATA INFORMATION -->
+
+        <section id="about" class="information-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="eyebrow">ABOUT THE DATA</span>
+                    <h2>Understanding Fieldwise</h2>
+                </div>
+
+            </div>
+
+
+            <div class="information-grid">
+
+                <article class="information-card">
+                    <span>📅</span>
+                    <h3>Historical Data</h3>
+
+                    <p>
+                        Explore available historical production
+                        and rainfall observations from 2024 onward.
+                    </p>
+                </article>
+
+
+                <article class="information-card">
+                    <span>🤖</span>
+                    <h3>AI Analysis</h3>
+
+                    <p>
+                        Compare AI production estimates with
+                        traditional farming estimates.
+                    </p>
+                </article>
+
+
+                <article class="information-card">
+                    <span>📍</span>
+                    <h3>Telangana Coverage</h3>
+
+                    <p>
+                        Explore the district names available
+                        in the supplied agricultural dataset.
+                    </p>
+                </article>
+
+            </div>
+
+
+            <div class="warning-box">
+                <strong>Data quality notice:</strong>
+
+                <p id="districtDataNote">
+                    District-level records must be interpreted
+                    according to their original data source.
+                    Replicated state-level samples are not
+                    independent district measurements.
+                </p>
+            </div>
+
+            <div class="note">
+                <strong>Prediction limitation:</strong>
+
+                <p id="forecastNote">
+                    Forecasts are statistical trend estimates.
+                    Their reliability depends on the quality,
+                    quantity and representativeness of historical data.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-brand">
+            🌱 <strong>Fieldwise</strong>
+        </div>
+
+        <p>
+            Smart Farming Analytics | Telangana, India
+        </p>
+
+        <p>
+            Agricultural insights through data and technology.
+        </p>
+
+        <small>
+            © 2026 Fieldwise. All rights reserved.
+        </small>
+
+    </footer>
+
+
+    <!-- CHART.JS -->
+
+    <script src="app.js"></script>
+
+</body>
+</html>
