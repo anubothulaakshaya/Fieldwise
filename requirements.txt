@@ -1,0 +1,1 @@
+# No third-party Python packages required. Chart.js and Papa Parse load from CDN.
